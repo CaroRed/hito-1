@@ -1,2 +1,2 @@
-# hito-1
-# En el archivo evidencias.pdf se encuentran las capturas requeridas por el hito-1
+# hito-2
+# Hito 2 es sobre manejo de base de datos con postgres
