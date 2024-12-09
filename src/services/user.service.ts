@@ -55,6 +55,7 @@ const deleteUserById = async (id: number) => {
         throw new Error("User not found");
     }
     const deleteUser = await UserModel.deleteUser(id);
+    return deleteUser;
 }
 
 export const userService = {

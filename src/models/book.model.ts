@@ -27,11 +27,21 @@ const findOneByIsbn = async (isbn: string) => {
     return rows[0] as IBook;
 };
 
-//update
-const update = async (isbn: string, name: string, pages: number) => {
-    const query = "UPDATE books SET name = $1, pages = $2 WHERE isbn = $3 RETURNING *";
+const findOneById = async (id: number) => {
+    const query = {
+        text: "SELECT * FROM books WHERE isbn = $1",
+        values: [id],
+    };
 
-    const values = [name, pages, isbn];
+    const { rows } = await pool.query(query);
+    return rows[0] as IBook;
+};
+
+//update
+const update = async (id: number, name: string, pages: number) => {
+    const query = "UPDATE books SET name = $1, pages = $2 WHERE id = $3 RETURNING *";
+
+    const values = [name, pages, id];
 
     const { rows } = await pool.query(query, values);
     return rows[0] as IBook;
@@ -44,5 +54,6 @@ export const Book = {
     create,
     findAll,
     findOneByIsbn,
+    findOneById,
     update
 }

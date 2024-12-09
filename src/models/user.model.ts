@@ -62,6 +62,7 @@ const deleteUser = async (id: number) => {
   const values = [id];
 
   const { rows } = await pool.query(query, values);
+  return rows;
 }
 
 export const UserModel = {

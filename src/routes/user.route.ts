@@ -12,15 +12,17 @@ const router = Router();
 router.get("/", verifyToken, userController.getUsers);
 
 // leer un único usuario por id
-router.get("/:id", userController.getUser);
+router.get("/:id", verifyToken, userController.getUser);
 
 // crear un usuario
 router.post("/", userController.createUser);
 
-// eliminar un usuario por id
-
-
 // actualizar un usuario por id
-router.put("/:id", userController.updateUser);
+router.put("/:id", verifyToken, userController.updateUser);
+
+// eliminar un usuario por id
+router.delete("/:id", verifyToken, userController.deleteUser);
+
+
 
 export default router;

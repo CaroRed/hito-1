@@ -84,10 +84,27 @@ const updateUser = async (req: Request, res: Response) => {
 
 }
 
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const deleteUser = await userService.deleteUserById(parseInt(id));
+    res.json(deleteUser);
+  } catch (error) {
+    console.log(error);
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+
+    } else
+      res.status(500).json({ error: "Error de servidor" });
+  }
+
+}
+
 export const userController = {
   getUsers,
   getUser,
   getUserByEmail,
   createUser,
-  updateUser
+  updateUser,
+  deleteUser
 };
