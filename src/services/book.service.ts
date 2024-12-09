@@ -5,6 +5,11 @@ const getAll = async () => {
     return books;
 };
 
+const getBookById = async (id: number) => {
+    const user = await Book.findOneById(id);
+    return user;
+};
+
 const createBook = async (isbn: string, name: string, pages: number) => {
     const book = await Book.findOneByIsbn(isbn);
 
@@ -23,8 +28,18 @@ const updateBook = async (id: number, name: string, pages: number) => {
     return book;
 }
 
+const deleteBook = async (id: number) => {
+    const book = await Book.findOneById(id);
+    if (!book) throw new Error("book not found");
+
+    const deleteBook = await Book.deleteBook(id);
+    return deleteBook;
+}
+
 export const bookService = {
     getAll,
+    getBookById,
     createBook,
-    updateBook
+    updateBook,
+    deleteBook
 }

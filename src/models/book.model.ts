@@ -49,11 +49,19 @@ const update = async (id: number, name: string, pages: number) => {
 
 
 //delete
+const deleteBook = async (id: number) => {
+    const query = "DELETE FROM books WHERE id = $1";
+    const values = [id];
+
+    const { rows } = await pool.query(query, values);
+    return rows;
+}
 
 export const Book = {
     create,
     findAll,
     findOneByIsbn,
     findOneById,
-    update
+    update,
+    deleteBook
 }

@@ -15,6 +15,26 @@ const getBooks = async (req: Request, res: Response) => {
     }
 };
 
+const getBookById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const book = await bookService.getBookById(parseInt(id));
+        if (!book) {
+            res.status(404).json({ message: "Book not found" });
+        }
+        else {
+            res.json(book);
+        }
+    } catch (error) {
+        console.log(error);
+        if (error instanceof Error) {
+            res.status(500).json({ error: error.message });
+        } else
+            res.status(500).json({ error: "Error de servidor" });
+    }
+};
+
+
 
 const createBook = async (req: Request, res: Response) => {
     try {
@@ -47,8 +67,26 @@ const updateBook = async (req: Request, res: Response) => {
     }
 };
 
+const deleteBook = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const deleteBook = await bookService.deleteBook(parseInt(id));
+        res.json(deleteBook);
+    } catch (error) {
+        console.log(error);
+        if (error instanceof Error) {
+            res.status(500).json({ error: error.message });
+
+        } else
+            res.status(500).json({ error: "Error de servidor" });
+    }
+
+}
+
 export const bookController = {
     getBooks,
+    getBookById,
     createBook,
-    updateBook
+    updateBook,
+    deleteBook
 }

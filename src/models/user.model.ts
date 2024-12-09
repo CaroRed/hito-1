@@ -2,7 +2,7 @@ import { pool } from "../config/database";
 import { User } from "../interfaces/user.interface";
 
 const findAll = async () => {
-  const { rows } = await pool.query("SELECT * FROM USERS");
+  const { rows } = await pool.query("SELECT * FROM USERS ORDER BY id ASC");
   return rows as User[];
 };
 
