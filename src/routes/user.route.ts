@@ -19,6 +19,8 @@ router.post("/", userController.createUser);
 
 // eliminar un usuario por id
 
+
 // actualizar un usuario por id
+router.put("/:id", userController.updateUser);
 
 export default router;

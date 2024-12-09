@@ -34,9 +34,34 @@ const createUserWithEmailAndPassword = async (
     return newUser;
 };
 
+const updateUserEmailAndPassword = async (id: number, email: string, password: string) => {
+    const user = await UserModel.findOneById(id);
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const passwordHashed = await bcrypt.hash(password, salt);
+
+    const updateUser = await UserModel.update(id, email, passwordHashed);
+    return updateUser;
+}
+
+const deleteUserById = async (id: number) => {
+    const user = await UserModel.findOneById(id);
+
+    if (!user) {
+        throw new Error("User not found");
+    }
+    const deleteUser = await UserModel.deleteUser(id);
+}
+
 export const userService = {
     getAllUsers,
     getUserById,
     getUserByEmail,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    updateUserEmailAndPassword,
+    deleteUserById
 }; 

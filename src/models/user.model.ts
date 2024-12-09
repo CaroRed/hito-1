@@ -49,8 +49,25 @@ const create = async (email: string, password: string) => {
   return rows[0] as User;
 };
 
+const update = async (id: number, email: string, password: string) => {
+  const query = "UPDATE USERS SET email = $1, password = $2 WHERE id = $3 RETURNING *";
+  const values = [email, password, id];
+
+  const { rows } = await pool.query(query, values);
+  return rows[0] as User;
+}
+
+const deleteUser = async (id: number) => {
+  const query = "DELETE FROM USERS WHERE id = $1";
+  const values = [id];
+
+  const { rows } = await pool.query(query, values);
+}
+
 export const UserModel = {
   create,
+  update,
+  deleteUser,
   findOneById,
   findOneByEmail,
   findAll,
