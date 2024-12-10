@@ -48,7 +48,7 @@ http://localhost:3000/api/v1/auth/register
 ### Books
 
 #### Create
->**POST /api/v1/books** 
+>**POST /api/v1/books**   
 >http://localhost:3000/api/v1/books
 
 ```json
