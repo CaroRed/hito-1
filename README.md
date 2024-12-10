@@ -9,7 +9,14 @@ Hito 2 es sobre el manejo de base de datos con PostgreSQL. El proyecto utiliza p
 - pgAdmin
 - Dependencias de Node.js (ver `package.json`)
 
-## Instalación
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/tu_usuario/hito-2.git
+## EndPoint
+POST /api/v1/auth/login
+ http://localhost:3000/api/v1/auth/login
+
+POST /api/v1/auth/register
+ http://localhost:3000/api/v1/auth/register
+
+    { 
+    "email": "test@example.com",
+    "password": "123123"
+    }
