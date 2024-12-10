@@ -46,6 +46,19 @@ http://localhost:3000/api/v1/auth/register
 >http://localhost:3000/api/v1/users/{id}
 
 ### Books
+
+#### Create
+>**POST /api/v1/books** 
+>http://localhost:3000/api/v1/books
+
+```json
+{
+    "isbn": "978-0-385-08695-0",
+    "name": "Carrie",
+    "pages": 199
+}
+```
+
 #### Get all books
 >**GET /api/v1/books**   
 >http://localhost:3000/api/v1/books
