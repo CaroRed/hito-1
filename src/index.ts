@@ -3,6 +3,7 @@ import express from 'express';
 import { pool } from "./config/database";
 import userRoute from './routes/user.route';
 import authRoute from './routes/auth.route';
+import bookRoute from "./routes/book.route";
 
 const app = express()
 const port = 3000
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/books", bookRoute);
 
 (async () => {
   try {

@@ -2,7 +2,7 @@ import { pool } from "../config/database";
 import { Book as IBook } from "../interfaces/book.interface";
 
 const create = async (isbn: string, name: string, pages: number) => {
-    const query = "INSERT INTO books values ($1, $2, $3, NOW()) RETURNING *"
+    const query = "INSERT INTO books (isbn, name, pages, created_at) values ($1, $2, $3, NOW()) RETURNING *"
     const values = [isbn, name, pages]
     const { rows } = await pool.query(query, values)
     return rows[0] as IBook;
@@ -29,7 +29,7 @@ const findOneByIsbn = async (isbn: string) => {
 
 const findOneById = async (id: number) => {
     const query = {
-        text: "SELECT * FROM books WHERE isbn = $1",
+        text: "SELECT * FROM books WHERE id = $1",
         values: [id],
     };
 

@@ -14,7 +14,7 @@ const createBook = async (isbn: string, name: string, pages: number) => {
     const book = await Book.findOneByIsbn(isbn);
 
     if (book) {
-        throw new Error("book already exists");
+        throw new Error("book ISBN already exists");
     }
 
     const newBook = await Book.create(isbn, name, pages);
